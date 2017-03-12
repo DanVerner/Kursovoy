@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Kursovoy.iml" filepath="$PROJECT_DIR$/.idea/modules/Kursovoy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Kursovoy_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Kursovoy_main.iml" group="Kursovoy" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Kursovoy_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Kursovoy_test.iml" group="Kursovoy" />
+    </modules>
+  </component>
+</project>

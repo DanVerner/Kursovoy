@@ -1,0 +1,64 @@
+@font-face {
+    font-family: "Bebas Neue Bold";
+    src: url('BebasNeue Bold.otf');
+}
+h3 {
+    margin: 5px 10px;
+    font-family: "Bebas Neue Bold";
+}
+button {
+    margin: 5px auto;
+    padding: 5px 15px;
+    font-family: "Bebas Neue Bold",sans-serif;
+}
+input{
+    margin: 5px 40px;
+    padding: 5px 10px;
+}
+legend {
+    font-family: "Bebas Neue Bold",sans-serif;
+}
+select {
+    width: 550px;
+    margin: auto 10px;
+}
+.chapter_list, .lesson_list {
+    margin: 100px auto;
+    width: 600px;
+}
+.form_login, .reg_form {
+    margin: 200px auto;
+    width: 300px;
+}
+.log_title, .reg_title {
+    font-family: "Bebas Neue Bold",sans-serif;
+    margin: 10px 14px;
+}
+.reg_link {
+    margin: auto 60px;
+    font-family: "Arial",sans-serif;
+    text-decoration: none;
+}
+.reg_login{
+    margin: 5px 100px;
+    float: left;
+    text-decoration: none;
+    color: #000;
+    font-family: Arial;
+    font-size: 13px;
+    padding: 5px 15px;
+    border: 1px solid #9f9f9f;
+    background: linear-gradient(to top, #dedede, #fff);
+}
+.reg_login:hover{
+    border: 1px solid #7b7b7b;
+}
+.wrong_data {
+    display: none;
+}
+#loginbtn  {
+    margin: 5px 75px;
+}
+#regbtn {
+    margin: 5px 83px;
+}
