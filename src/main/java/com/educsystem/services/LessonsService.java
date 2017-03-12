@@ -3,6 +3,8 @@ package com.educsystem.services;
 import com.educsystem.common.exceptions.LessonsDaoException;
 import com.educsystem.database.dao.LessonsDao;
 import com.educsystem.database.pojo.Lessons;
+import com.educsystem.interfaces.LessonsDaoInf;
+import com.educsystem.interfaces.LessonsServiceInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,13 @@ import java.util.List;
  * Created by Denis on 26.02.2017.
  */
 @Service
-public class LessonsService {
+public class LessonsService implements LessonsServiceInf{
+    private LessonsDaoInf lessonsDao;
 
     @Autowired
-    private LessonsDao lessonsDao;
+    public LessonsService(LessonsDaoInf lessonsDao) {
+        this.lessonsDao = lessonsDao;
+    }
 
     public List<Lessons> getAllLessons(int getChName) throws ClassNotFoundException, LessonsDaoException {
         return lessonsDao.getAllLessons(getChName);

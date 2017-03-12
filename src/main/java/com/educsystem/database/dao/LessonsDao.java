@@ -4,6 +4,7 @@ import com.educsystem.common.exceptions.LessonsDaoException;
 import com.educsystem.database.connector.Connector;
 import com.educsystem.database.connector.Pooler;
 import com.educsystem.database.pojo.Lessons;
+import com.educsystem.interfaces.LessonsDaoInf;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -18,7 +19,7 @@ import java.util.List;
  * Created by Denis on 26.02.2017.
  */
 @Component
-public class LessonsDao {
+public class LessonsDao implements LessonsDaoInf{
     private static Logger log = Logger.getLogger(UserDao.class);
     private static String SQL_ALL_LESSONS = "SELECT * FROM lessons ls " +
                                             "JOIN chapter ch " +
@@ -85,7 +86,7 @@ public class LessonsDao {
         return lessonList;
     }
 
-    public static boolean addLesson(int chapter_id, String title, String description, String path){
+    public boolean addLesson(int chapter_id, String title, String description, String path){
         try(Connection conn = Pooler.getPoolConn();
             PreparedStatement ps = conn.prepareStatement(SQL_ADD_LESSON)){
             ps.setInt(1,chapter_id);

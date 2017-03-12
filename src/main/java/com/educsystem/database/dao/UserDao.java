@@ -5,6 +5,7 @@ import com.educsystem.common.mail.Mailer;
 import com.educsystem.controllers.Servlets.LoginServ;
 import com.educsystem.database.connector.Pooler;
 import com.educsystem.database.pojo.User;
+import com.educsystem.interfaces.UserDaoInf;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ import java.util.List;
  * Created by Denis on 23.02.2017.
  */
 @Component
-public class UserDao {
+public class UserDao implements UserDaoInf{
     private static final Logger log = Logger.getLogger(UserDao.class);
 
     private static final String SQL_FIND_USER =

@@ -3,6 +3,7 @@ package com.educsystem.database.dao;
 import com.educsystem.common.exceptions.ChapterDaoException;
 import com.educsystem.database.connector.Pooler;
 import com.educsystem.database.pojo.Chapter;
+import com.educsystem.interfaces.ChapterDaoInf;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ import static com.educsystem.controllers.Servlets.LoginServ.userlevel;
  * Created by Denis on 26.02.2017.
  */
 @Component
-public class ChapterDao {
+public class ChapterDao implements ChapterDaoInf{
     private static final Logger log = Logger.getLogger(ChapterDao.class);
     private static final String SQL_GET_CHAPTERS = "SELECT * FROM chapter WHERE user_level <= ?";
     private static String SQL_ADD_CHAPTERS = "INSERT INTO chapter(`title`,`description`,`user_level`) VALUES (?,?,?)";
@@ -48,7 +49,7 @@ public class ChapterDao {
         return chapterList;
     }
 
-    public static boolean addChapter(String title, String description, int userlvl){
+    public boolean addChapter(String title, String description, int userlvl){
         try(Connection conn = Pooler.getPoolConn();
             PreparedStatement ps = conn.prepareStatement(SQL_ADD_CHAPTERS)){
             ps.setString(1,title);
