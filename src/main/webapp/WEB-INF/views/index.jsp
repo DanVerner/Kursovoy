@@ -11,7 +11,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
   <head>
-    <title>ИС обучения программированию</title>
+      <title>ИС обучения программированию</title>
       <spring:url value="/resources/style.css" var="style" />
       <link href="${style}" rel="stylesheet" />
   </head>
@@ -21,13 +21,13 @@
               <legend>Доступные главы для чтения</legend>
               <h3>Выберите доступную главу</h3>
               <form action="/kursovoy/chapters" method="post">
-                  <select name="selectChapter" size="10">
+                  <select name="selectChapter" id="selectChapter" size="10" required>
                       <c:forEach items="${chapterList}" var="chapter">
                       <option value="<c:out value="${chapter.id}"></c:out>"><c:out value="${chapter.title}"></c:out></option>
                       <c:out value="${chapter.description}"></c:out>
                       </c:forEach>
                   </select>
-                  <input type="submit" name="chapconfirm" formmethod="post" value="Просмотреть список лекций">
+                  <input type="submit" id="chapconfirm" name="chapconfirm" formmethod="post" value="Просмотреть список лекций">
                   <button name="chapter_create" type="submit">Добавить главу</button>
               </form>
           </fieldset>

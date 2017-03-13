@@ -20,7 +20,7 @@
                 <legend>Лекции</legend>
                 <h3>Выберите лекцию для чтения</h3>
                 <form action="/kursovoy/chapters/lessons" method="post">
-                    <select name="selectLesson" size="10">
+                    <select name="selectLesson" size="10" required>
                         <c:forEach items="${lessonsList}" var="lessons">
                         <option value="<c:out value="${lessons.id}"/>"><c:out value="${lessons.title}"></c:out></option>
                         </c:forEach>

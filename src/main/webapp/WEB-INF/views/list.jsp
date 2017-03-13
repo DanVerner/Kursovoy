@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Denis
@@ -9,7 +10,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>ListPage</title>
+        <c:forEach items="${lessonList}" var="lesson">
+            <title>${lesson.title}</title>
+        </c:forEach>
+
+        <spring:url value="/resources/style.css" var="style" />
+        <spring:url value="/resources/ReadingTimer.js" var="script" />
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="${script}" type="text/javascript" rel="script"></script>
+        <link href="${style}" rel="stylesheet" />
     </head>
     <body>
         <fieldset>
@@ -19,8 +28,9 @@
                 <div><c:out value="${lesson.path}"/></div>
             </c:forEach>
         </fieldset>
+        <a href="/" id="read_link">Прочитать</a>
         <form action="/kursovoy/chapters/lessons/read" method="post">
-            <button type="submit" name="read" disabled>Лекция прочитана</button>
+            <button type="submit" name="read" id="readbtn">Лекция прочитана</button>
             <button type="submit" name="back">Назад к лекциям</button>
         </form>
     </body>
