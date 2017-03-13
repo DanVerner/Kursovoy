@@ -2,6 +2,7 @@ package com.educsystem.controllers;
 
 import com.educsystem.common.exceptions.LessonsDaoException;
 import com.educsystem.database.pojo.Lessons;
+import com.educsystem.interfaces.LessonsServiceInf;
 import com.educsystem.services.LessonsService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,12 @@ import java.util.List;
  */
 @Controller
 public class LessonController {
+    private LessonsServiceInf lessonsService;
+
     @Autowired
-    private LessonsService lessonsService;
+    public LessonController(LessonsServiceInf lessonsService) {
+        this.lessonsService = lessonsService;
+    }
 
     public static int lesID;
 

@@ -2,6 +2,7 @@ package com.educsystem.controllers;
 
 import com.educsystem.common.exceptions.ChapterDaoException;
 import com.educsystem.database.pojo.Chapter;
+import com.educsystem.interfaces.ChapterServiceInf;
 import com.educsystem.services.ChapterService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,12 @@ import java.util.List;
  */
 @Controller
 public class ChapterController {
+    private ChapterServiceInf chapterService;
+
     @Autowired
-    private ChapterService chapterService;
+    public ChapterController(ChapterServiceInf chapterService) {
+        this.chapterService = chapterService;
+    }
 
     private static final Logger log = Logger.getLogger(ChapterController.class);
     public static int ChID;

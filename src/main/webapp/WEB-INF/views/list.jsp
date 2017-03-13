@@ -28,7 +28,6 @@
                 <div><c:out value="${lesson.path}"/></div>
             </c:forEach>
         </fieldset>
-        <a href="/" id="read_link">Прочитать</a>
         <form action="/kursovoy/chapters/lessons/read" method="post">
             <button type="submit" name="read" id="readbtn">Лекция прочитана</button>
             <button type="submit" name="back">Назад к лекциям</button>

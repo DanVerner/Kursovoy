@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Denis on 12.03.2017.
  */
 public interface LessonsDaoInf {
-    public List<Lessons> getAllLessons(int chName) throws ClassNotFoundException, LessonsDaoException;
-    public List<Lessons> getLesson(int lesID) throws LessonsDaoException, NamingException, SQLException, IOException;
-    public boolean addLesson(int chapter_id, String title, String description, String path);
+    List<Lessons> getAllLessons(int chName) throws ClassNotFoundException, LessonsDaoException;
+    List<Lessons> getLesson(int lesID) throws LessonsDaoException, NamingException, SQLException, IOException;
+    boolean addLesson(int chapter_id, String title, String description, String path);
 }

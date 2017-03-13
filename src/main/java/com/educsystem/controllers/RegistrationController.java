@@ -2,6 +2,7 @@ package com.educsystem.controllers;
 
 import com.educsystem.common.exceptions.UserDaoException;
 import com.educsystem.common.security.Crypt;
+import com.educsystem.interfaces.UserServiceInf;
 import com.educsystem.services.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,12 @@ import java.util.Locale;
  */
 @Controller
 public class RegistrationController {
+    private UserServiceInf userService;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private MessageSource messageSource;
+    public RegistrationController(UserServiceInf userService) {
+        this.userService = userService;
+    }
 
     private static Logger log = Logger.getLogger(RegistrationController.class);
 
