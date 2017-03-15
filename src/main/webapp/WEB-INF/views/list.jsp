@@ -21,6 +21,9 @@
         <link href="${style}" rel="stylesheet" />
     </head>
     <body>
+        <div class="header">
+            <jsp:include page="header.jsp"/>
+        </div>
         <fieldset>
             <legend>Лекция</legend>
             <c:forEach items="${lessonList}" var="lesson">

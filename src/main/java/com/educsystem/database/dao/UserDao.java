@@ -2,6 +2,7 @@ package com.educsystem.database.dao;
 
 import com.educsystem.common.exceptions.UserDaoException;
 import com.educsystem.common.mail.Mailer;
+import com.educsystem.controllers.LoginController;
 import com.educsystem.controllers.Servlets.LoginServ;
 import com.educsystem.database.connector.Pooler;
 import com.educsystem.database.pojo.User;
@@ -31,9 +32,26 @@ public class UserDao implements UserDaoInf{
             "INSERT INTO users(`username`,`email`,`password`,`level`,`role`) VALUES (?,?,?,?,?);";
     private static final String SQL_ADMIN =
             "SELECT email FROM users WHERE role = \"admin\"";
-    private static final String SQL_IS_ADMIN =
-            "SELECT role FROM users WHERE email = ?";
+    private static final String SQL_GET_USERLEVEL =
+            "SELECT level FROM users WHERE username = ?;";
     private static List<String> recepList = new ArrayList<>();
+
+    public int getLevel(String login){
+        try(Connection conn = Pooler.getPoolConn();
+            PreparedStatement ps = conn.prepareStatement(SQL_GET_USERLEVEL)){
+            ps.setString(1, login);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                LoginController.userlevel = rs.getInt("level");
+            }
+            return LoginController.userlevel;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public User getUser(String logindata, String passworddata) throws UserDaoException, ClassNotFoundException {
         log.debug("UserName: " + logindata + " Password: " + passworddata);
@@ -54,7 +72,7 @@ public class UserDao implements UserDaoInf{
                         rs.getInt("level"),
                         rs.getString("role")
                 );
-                LoginServ.userlevel = rs.getInt("level");
+                LoginController.userlevel = rs.getInt("level");
                 if(rs.getString("role").equals("admin")){
                     try(PreparedStatement psa = conn.prepareStatement(SQL_ADMIN)){
                         ResultSet rsa = psa.executeQuery();
@@ -88,7 +106,7 @@ public class UserDao implements UserDaoInf{
             ps.setString(2, email);
             ps.setString(3, passworddata);
             ps.setInt(4, 1);
-            ps.setString(5,"user");
+            ps.setString(5,"ROLE_USER");
             int update = ps.executeUpdate();
             if (update > 0){
                 log.debug("New user added!");
@@ -99,18 +117,6 @@ public class UserDao implements UserDaoInf{
         } catch (SQLException e) {
             log.error("Can't add user to DataBase!", e);
             throw new UserDaoException();
-        } catch (NamingException e) {
-            log.error(e);
-        }
-        return false;
-    }
-
-    public boolean isAdmin(String email) throws ClassNotFoundException{
-        try(Connection conn = Pooler.getPoolConn();
-            PreparedStatement ps = conn.prepareStatement(SQL_IS_ADMIN)){
-
-        } catch (SQLException e){
-            log.trace("User is not admin! Access Denied!");
         } catch (NamingException e) {
             log.error(e);
         }

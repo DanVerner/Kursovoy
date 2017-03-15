@@ -15,6 +15,9 @@
         <link href="${style}" rel="stylesheet" />
     </head>
     <body>
+        <div class="header">
+            <jsp:include page="header.jsp"/>
+        </div>
         <div class="lesson_list">
             <fieldset>
                 <legend>Лекции</legend>

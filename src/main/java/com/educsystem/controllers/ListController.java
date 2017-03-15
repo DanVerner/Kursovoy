@@ -32,23 +32,19 @@ public class ListController {
 
     @RequestMapping(value = "/chapters/lessons/read", method = RequestMethod.GET)
     public String getListPage(Model model){
-        if(LoginController.sessionID == null){
-            return "redirect:/login";
-        } else {
-            List<Lessons> lessonList = null;
-            try {
-                lessonList = lessonsService.getLesson(LessonController.lesID);
-            } catch (SQLException e) {
-                log.error("Can't read lesson!");
-            } catch (IOException e) {
-                log.error(e);
-            } catch (LessonsDaoException e) {
-                log.error(e);
-            } catch (NamingException e) {
-                log.error(e);
-            }
-            model.addAttribute("lessonList",lessonList);
-            return "list";
+        List<Lessons> lessonList = null;
+        try {
+            lessonList = lessonsService.getLesson(LessonController.lesID);
+        } catch (SQLException e) {
+            log.error("Can't read lesson!");
+        } catch (IOException e) {
+            log.error(e);
+        } catch (LessonsDaoException e) {
+            log.error(e);
+        } catch (NamingException e) {
+            log.error(e);
         }
+        model.addAttribute("lessonList",lessonList);
+        return "list";
     }
 }

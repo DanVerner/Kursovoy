@@ -32,11 +32,7 @@ public class RegistrationController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String getRegPage(){
-        if(LoginController.sessionID == null) {
-            return "registration";
-        } else {
-            return "redirect:chapters";
-        }
+        return "registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

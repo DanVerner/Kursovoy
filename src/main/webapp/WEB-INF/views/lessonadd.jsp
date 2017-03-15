@@ -12,6 +12,9 @@
     <title>Добавить лекцию</title>
 </head>
     <body>
+        <div class="header">
+            <jsp:include page="header.jsp"/>
+        </div>
         <fieldset>
             <legend>Добавить лекцию</legend>
             <form method="post" action="/kursovoy/chapters/lessons/add">

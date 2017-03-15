@@ -30,4 +30,9 @@ public class UserService implements UserServiceInf{
     public boolean registration(String login, String email, String password) throws ClassNotFoundException, UserDaoException{
         return userDao.regUser(login, email, password);
     }
+
+    public boolean getlevel(String login){
+        if(userDao.getLevel(login) != 0) return true;
+        return false;
+    }
 }

@@ -8,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="false" %>
 <html>
 <head>
     <title>Вход в систему</title>
@@ -19,18 +20,13 @@
             <h2 class="log_title">ИС обучения программированию</h2>
             <fieldset>
                 <legend>Форма входа</legend>
-                <form action="/kursovoy/login" method="POST">
-                    <input type="text" id="login" name="login" placeholder="Логин или электронная почта..." value="" required><br>
-                    <input type="password" id="password" name="password" placeholder="Пароль..." value="" required><br>
-                    <input type="submit" id="loginbtn" value="Авторизоваться">
+                <spring:url value="/j_spring_security_check" var="loginUrl"/>
+                <form action="${loginUrl}" method="POST">
+                    <input type="text" id="login" name="j_username" placeholder="Логин или электронная почта..." value="" required><br>
+                    <input type="password" id="password" name="j_password" placeholder="Пароль..." value="" required><br>
+                    <input type="submit" id="loginbtn" value="Авторизоваться" formmethod="post">
                 </form>
                 <a href="/kursovoy/registration" class="reg_link">Зарегистрироваться</a>
-                <c:if test = "${log_fail != null}">
-                    <div name="">Неверные данные!</div>
-                </c:if>
-                <c:if test = "${reg_succ != null}">
-                    <div name="">Регистрация прошла успешно!</div>
-                </c:if>
             </fieldset>
     </div>
 </body>

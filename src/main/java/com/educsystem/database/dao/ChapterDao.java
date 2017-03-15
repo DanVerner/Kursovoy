@@ -1,6 +1,7 @@
 package com.educsystem.database.dao;
 
 import com.educsystem.common.exceptions.ChapterDaoException;
+import com.educsystem.controllers.LoginController;
 import com.educsystem.database.connector.Pooler;
 import com.educsystem.database.pojo.Chapter;
 import com.educsystem.interfaces.ChapterDaoInf;
@@ -11,8 +12,6 @@ import javax.naming.NamingException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.educsystem.controllers.Servlets.LoginServ.userlevel;
 
 /**
  * Created by Denis on 26.02.2017.
@@ -28,7 +27,7 @@ public class ChapterDao implements ChapterDaoInf{
         try (Connection conn = Pooler.getPoolConn()){
             PreparedStatement st = conn.prepareStatement(SQL_GET_CHAPTERS);
 //            Statement st = conn.createStatement();
-            st.setInt(1, userlevel);
+            st.setInt(1, LoginController.userlevel);
             ResultSet rs = st.executeQuery();
 
             while(rs.next()){

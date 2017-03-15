@@ -30,9 +30,36 @@ select {
     margin: 200px auto;
     width: 300px;
 }
+.header {
+    font-family: "Bebas Neue Bold";
+    font-size: 18px;
+    border-bottom: 2px solid #000;
+    width: 100%;
+    overflow: hidden;
+}
+.inner_header{
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.inner_header h2{
+    margin: 5px;
+    float: left;
+}
 .log_title, .reg_title {
     font-family: "Bebas Neue Bold",sans-serif;
     margin: 10px 14px;
+}
+.logouturl{
+    position: relative;
+    top: 12px;
+    margin-left: 15px;
+    text-decoration: none;
+    color: #000;
+    font-family: Arial;
+    font-size: 13px;
+    padding: 5px 15px;
+    border: 1px solid #9f9f9f;
+    background: linear-gradient(to top, #dedede, #fff);
 }
 .reg_link {
     margin: auto 60px;

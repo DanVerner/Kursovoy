@@ -15,6 +15,9 @@
     <link href="${style}" rel="stylesheet" />
 </head>
     <body>
+        <div class="header">
+            <jsp:include page="header.jsp"/>
+        </div>
         <fieldset>
             <legend>Добавить главу</legend>
             <form method="post" action="/kursovoy/chapters/add">

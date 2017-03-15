@@ -41,20 +41,16 @@ public class LessonController {
 
     @RequestMapping(value = "/chapters/lessons", method = RequestMethod.GET)
     public String getLessonPage(Model model){
-        if(LoginController.sessionID == null){
-            return "redirect:/login";
-        } else {
-            List<Lessons> lessonsList = null;
-            try {
-                lessonsList = lessonsService.getAllLessons(ChapterController.ChID);
-            } catch (ClassNotFoundException e) {
-                log.error("Can't load lessons from DB", e);
-            } catch (LessonsDaoException e){
-                log.error(e);
-            }
-            model.addAttribute("lessonsList", lessonsList);
-            return "lessons";
+        List<Lessons> lessonsList = null;
+        try {
+            lessonsList = lessonsService.getAllLessons(ChapterController.ChID);
+        } catch (ClassNotFoundException e) {
+            log.error("Can't load lessons from DB", e);
+        } catch (LessonsDaoException e){
+            log.error(e);
         }
+        model.addAttribute("lessonsList", lessonsList);
+        return "lessons";
     }
     @RequestMapping(value = "/chapters/lessons", method = RequestMethod.POST, params = {"lessconfirm"})
     public String getLesson (@RequestParam ("selectLesson") String getLesId) throws LessonsDaoException, NamingException, SQLException, IOException {
@@ -69,11 +65,7 @@ public class LessonController {
 
     @RequestMapping(value = "/chapters/lessons/add", method = RequestMethod.GET)
     public String getLessonAdd(){
-        if(LoginController.sessionID == null){
-            return "redirect:/login";
-        } else {
             return "lessonadd";
-        }
     }
 
     @RequestMapping(value = "/chapters/lessons/add", method = RequestMethod.POST)

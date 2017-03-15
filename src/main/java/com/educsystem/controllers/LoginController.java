@@ -19,7 +19,9 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by Denis on 07.03.2017.
@@ -32,21 +34,24 @@ public class LoginController {
         this.userService = userService;
     }
 
-    public static String sessionID = null;
-
     private static final Logger log = Logger.getLogger(LoginController.class);
+    public static int userlevel;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(){
-        if(sessionID == null) {
             return "login";
-        } else {
-            return "redirect:chapters";
-        }
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String getLogin(@RequestParam("login") String login,
+    public String getLevel(@RequestParam("j_username") String username) {
+       if (userService.getlevel(username)){
+           log.trace("Level get!");
+           return "redirect:chapters";
+       }
+       log.trace("Level isnt set!");
+       return "login";
+    }
+/*    public String getLogin(@RequestParam("login") String login,
                            @RequestParam("password") String oldPassword,
                            ModelAndView modelAndView,
                            HttpSession session) throws UserDaoException,
@@ -66,4 +71,5 @@ public class LoginController {
             return "login";
         }
     }
+*/
 }
