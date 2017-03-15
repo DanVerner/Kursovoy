@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by Denis on 07.03.2017.
@@ -36,11 +37,12 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String getRegistration(@RequestParam("login") String login,
-                                  @RequestParam("email") String email,
-                                  @RequestParam("password") String oldPassword,
-                                  Model model) throws ClassNotFoundException, UserDaoException{
+    public String getRegistration(@RequestParam Map<String,String> requestParams) throws ClassNotFoundException, UserDaoException{
+        String login = requestParams.get("login");
+        String email = requestParams.get("email");
+        String oldPassword = requestParams.get("password");
         String password = Crypt.crypting(oldPassword);
+
         if(userService.registration(login, email, password)){
             log.trace("Registration successfull!");
             return "redirect:login";

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
     <head>
         <title>Лекции главы</title>
@@ -30,7 +31,9 @@
                     </select>
                     <c:out value="${lessons.description}"></c:out>
                     <input type="submit" name="lessconfirm" formmethod="post" value="Читать лекцию">
-                    <button name="lesson_create" type="submit">Добавить лекцию</button>
+                    <sec:authorize access="hasRole('ROLE_EDITOR') OR hasRole('ROLE_ADMIN')">
+                        <button name="lesson_create" type="submit">Добавить лекцию</button>
+                    </sec:authorize>
                 </form>
             </fieldset>
         </div>

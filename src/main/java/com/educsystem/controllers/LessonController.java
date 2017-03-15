@@ -17,6 +17,7 @@ import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Denis on 07.03.2017.
@@ -69,10 +70,12 @@ public class LessonController {
     }
 
     @RequestMapping(value = "/chapters/lessons/add", method = RequestMethod.POST)
-    public String getLesson(@RequestParam("title") String title,
-                            @RequestParam("description") String description,
-                            @RequestParam("path") String path,
+    public String getLesson(@RequestParam Map<String,String> requestParams,
                             Model model){
+        String title = requestParams.get("title");
+        String description = requestParams.get("description");
+        String path = requestParams.get("path");
+
         if(lessonsService.addLesson(ChapterController.ChID,title,description,path)){
             log.trace("Lesson added");
             getLessonPage(model);

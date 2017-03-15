@@ -37,6 +37,8 @@
           <element id="library" level="project" name="Gradle: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.3.5.RELEASE" />
           <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-taglibs/4.2.1.RELEASE/ae11ffe564e572d601d7844f642c8b11dcd7a1af/spring-security-taglibs-4.2.1.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-acl/4.2.1.RELEASE/d289275f0cff6ea0217bc618c17c0b2983c5a93a/spring-security-acl-4.2.1.RELEASE.jar" />
         </element>
       </element>
     </root>

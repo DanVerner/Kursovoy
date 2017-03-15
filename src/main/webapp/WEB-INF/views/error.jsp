@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Denis
@@ -11,6 +12,12 @@
         <title>Error page</title>
     </head>
     <body>
-        <h1>OMG You fuckin suck!</h1>
+        <h1>Произошла ошибка!</h1>
+        <c:forEach items="${errMsg}" var="ste">
+            ${ste}
+        </c:forEach>
+        <c:forEach items="${SQLError}" var="ste2">
+            ${ste2}
+        </c:forEach>
     </body>
 </html>

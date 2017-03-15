@@ -42,15 +42,7 @@ public class LoginController {
             return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String getLevel(@RequestParam("j_username") String username) {
-       if (userService.getlevel(username)){
-           log.trace("Level get!");
-           return "redirect:chapters";
-       }
-       log.trace("Level isnt set!");
-       return "login";
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
 /*    public String getLogin(@RequestParam("login") String login,
                            @RequestParam("password") String oldPassword,
                            ModelAndView modelAndView,

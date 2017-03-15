@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="true" %>
 <html>
   <head>
@@ -32,7 +33,9 @@
                       </c:forEach>
                   </select>
                   <input type="submit" id="chapconfirm" name="chapconfirm" formmethod="post" value="Просмотреть список лекций">
-                  <button name="chapter_create" type="submit">Добавить главу</button>
+                  <sec:authorize access="hasRole('ROLE_EDITOR') OR hasRole('ROLE_ADMIN')">
+                      <button name="chapter_create" type="submit">Добавить главу</button>
+                  </sec:authorize>
               </form>
           </fieldset>
       </div>

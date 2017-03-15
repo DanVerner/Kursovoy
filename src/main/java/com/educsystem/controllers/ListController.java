@@ -31,20 +31,15 @@ public class ListController {
     private static Logger log = Logger.getLogger(ListController.class);
 
     @RequestMapping(value = "/chapters/lessons/read", method = RequestMethod.GET)
-    public String getListPage(Model model){
+    public String getListPage(Model model) throws SQLException, IOException, LessonsDaoException, NamingException{
         List<Lessons> lessonList = null;
-        try {
-            lessonList = lessonsService.getLesson(LessonController.lesID);
-        } catch (SQLException e) {
-            log.error("Can't read lesson!");
-        } catch (IOException e) {
-            log.error(e);
-        } catch (LessonsDaoException e) {
-            log.error(e);
-        } catch (NamingException e) {
-            log.error(e);
-        }
+        lessonList = lessonsService.getLesson(LessonController.lesID);
         model.addAttribute("lessonList",lessonList);
         return "list";
+    }
+
+    @RequestMapping(value = "/chapters/lessons/read", method = RequestMethod.POST)
+    public String getBack(){
+        return "redirect:/chapters/lessons";
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Denis on 07.03.2017.
@@ -72,10 +73,11 @@ public class ChapterController {
     }
 
     @RequestMapping(value = "/chapters/add", method = RequestMethod.POST)
-    public String chapterAdd(@RequestParam("title") String title,
-                             @RequestParam("description") String description,
-                             @RequestParam("user_lvl") String strUserlvl,
+    public String chapterAdd(@RequestParam Map<String,String> requestParams,
                              Model model){
+        String title = requestParams.get("title");
+        String description = requestParams.get("description");
+        String strUserlvl = requestParams.get("user_lvl");
         int userlvl = Integer.parseInt(strUserlvl);
         if(chapterService.addChapter(title,description,userlvl)){
             log.trace("Chapter added");

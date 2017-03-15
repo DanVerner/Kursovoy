@@ -7,9 +7,15 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-4.2.xsd">
     <http>
-        <access-denied-handler error-page="/login?auth=fail"/>
+        <access-denied-handler error-page="/error"/>
         <intercept-url pattern="/login*" access="permitAll"/>
-        <intercept-url pattern="/chapters*" access="hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/chapters*" access="hasRole('ROLE_USER') OR
+                                                    hasRole('ROLE_ADMIN') OR
+                                                    hasRole('ROLE_EDITOR')"/>
+        <intercept-url pattern="/chapters/add*" access="hasRole('ROLE_EDITOR') OR
+                                                        hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/chapters/lessons/add*" access="hasRole('ROLE_EDITOR') OR
+                                                                hasRole('ROLE_ADMIN')"/>
         <form-login login-page="/login"
                     default-target-url="/chapters"
                     login-processing-url="/j_spring_security_check"

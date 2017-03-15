@@ -36,10 +36,10 @@ select {
     border-bottom: 2px solid #000;
     width: 100%;
     overflow: hidden;
+    margin-bottom: 30px;
 }
 .inner_header{
     overflow: hidden;
-    margin-bottom: 30px;
 }
 .inner_header h2{
     margin: 5px;
