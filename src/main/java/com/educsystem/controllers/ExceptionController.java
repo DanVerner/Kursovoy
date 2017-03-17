@@ -22,6 +22,14 @@ public class ExceptionController {
         return model;
     }
 
+    @ExceptionHandler(ClassNotFoundException.class)
+    public ModelAndView handleClassNotFoundExc(ClassNotFoundException e){
+        ModelAndView model = new ModelAndView("error");
+        model.addObject("CNFE", "Сlass not found!");
+        log.error(e);
+        return model;
+    }
+
     @ExceptionHandler
     public ModelAndView handleSQLException(SQLException e) {
         ModelAndView model = new ModelAndView("error");

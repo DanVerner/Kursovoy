@@ -19,5 +19,8 @@
         <c:forEach items="${SQLError}" var="ste2">
             ${ste2}
         </c:forEach>
+        <c:forEach items="${CNFE}" var="ste3">
+            ${ste3}
+        </c:forEach>
     </body>
 </html>

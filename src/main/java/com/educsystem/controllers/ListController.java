@@ -31,7 +31,7 @@ public class ListController {
     private static Logger log = Logger.getLogger(ListController.class);
 
     @RequestMapping(value = "/chapters/lessons/read", method = RequestMethod.GET)
-    public String getListPage(Model model) throws SQLException, IOException, LessonsDaoException, NamingException{
+    public String getListPage(Model model) throws Exception{
         List<Lessons> lessonList = null;
         lessonList = lessonsService.getLesson(LessonController.lesID);
         model.addAttribute("lessonList",lessonList);

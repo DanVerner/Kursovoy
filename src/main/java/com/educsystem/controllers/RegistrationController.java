@@ -37,7 +37,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String getRegistration(@RequestParam Map<String,String> requestParams) throws ClassNotFoundException, UserDaoException{
+    public String getRegistration(@RequestParam Map<String,String> requestParams) throws Exception{
         String login = requestParams.get("login");
         String email = requestParams.get("email");
         String oldPassword = requestParams.get("password");

@@ -54,7 +54,7 @@ public class LessonController {
         return "lessons";
     }
     @RequestMapping(value = "/chapters/lessons", method = RequestMethod.POST, params = {"lessconfirm"})
-    public String getLesson (@RequestParam ("selectLesson") String getLesId) throws LessonsDaoException, NamingException, SQLException, IOException {
+    public String getLesson (@RequestParam ("selectLesson") String getLesId) throws Exception {
         lesID = Integer.parseInt(getLesId);
         return "redirect:lessons/read";
     }
