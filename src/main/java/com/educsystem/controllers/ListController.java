@@ -1,8 +1,10 @@
 package com.educsystem.controllers;
 
 import com.educsystem.common.exceptions.LessonsDaoException;
+import com.educsystem.database.pojo.Chapter;
 import com.educsystem.database.pojo.Lessons;
 import com.educsystem.interfaces.LessonsServiceInf;
+import com.educsystem.interfaces.UserServiceInf;
 import com.educsystem.services.LessonsService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,12 @@ import java.util.List;
 @Controller
 public class ListController {
     private LessonsServiceInf lessonsService;
+    private UserServiceInf userService;
 
     @Autowired
-    public ListController(LessonsServiceInf lessonsService) {
+    public ListController(LessonsServiceInf lessonsService, UserServiceInf userService) {
         this.lessonsService = lessonsService;
+        this.userService = userService;
     }
 
     private static Logger log = Logger.getLogger(ListController.class);
@@ -38,8 +42,14 @@ public class ListController {
         return "list";
     }
 
-    @RequestMapping(value = "/chapters/lessons/read", method = RequestMethod.POST)
-    public String getBack(){
+    @RequestMapping(value = "/chapters/lessons/read", method = RequestMethod.POST, params = {"read"})
+    public String read(){
+        userService.updateCompetency(ChapterController.name);
+        userService.updateLevel(ChapterController.name);
+        return "redirect:/chapters/lessons";
+    }
+    @RequestMapping(value = "/chapters/lessons/read", method = RequestMethod.POST, params = {"back"})
+    public String getBack() {
         return "redirect:/chapters/lessons";
     }
 }

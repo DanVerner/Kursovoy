@@ -12,4 +12,6 @@ public interface UserServiceInf {
     boolean authorize(String login, String password) throws UserDaoException, ClassNotFoundException, SQLException, NamingException;
     boolean registration(String login, String email, String password) throws ClassNotFoundException, UserDaoException;
     boolean getlevel(String login);
+    boolean updateCompetency(String login);
+    boolean updateLevel(String login);
 }

@@ -34,7 +34,66 @@ public class UserDao implements UserDaoInf{
             "SELECT email FROM users WHERE role = \"admin\"";
     private static final String SQL_GET_USERLEVEL =
             "SELECT level FROM users WHERE username = ?;";
+    private static final String SQL_GET_COMP =
+            "SELECT level,comp,lvl_id,competency FROM users u " +
+                    "JOIN lvlproperties l ON u.level = l.lvl_id " +
+                    "WHERE u.username = ?";
+    private static final String SQL_UPDATE_LEVEL =
+            "UPDATE users SET level = level + 1 WHERE username= ?";
+    private static final String SQL_UPDATE_COMPETENCY =
+            "UPDATE users SET comp = comp + 1 WHERE username = ?";
     private static List<String> recepList = new ArrayList<>();
+
+
+    public boolean updateLevel(String login){
+        try(Connection conn = Pooler.getPoolConn();
+        PreparedStatement ps = conn.prepareStatement(SQL_GET_COMP);
+        PreparedStatement psu = conn.prepareStatement(SQL_UPDATE_LEVEL)){
+            int usercomp;
+            int levelcomp;
+            ps.setString(1,login);
+            psu.setString(1,login);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                usercomp = rs.getInt("comp");
+                levelcomp = rs.getInt("competency");
+                if(usercomp >= levelcomp){
+                    int rsu = psu.executeUpdate();
+                    if (rsu != 0){
+                        log.trace("Level updated!");
+                        return true;
+                    } else {
+                        log.trace("Level update failed!");
+                    }
+                } else {
+                    log.trace("Not enough competency to update level!");
+                }
+            }
+        } catch (SQLException e) {
+            log.error(e);
+        } catch (NamingException e) {
+            log.error(e);
+        }
+        return false;
+    }
+    public boolean updateCompetency(String login){
+        try(Connection conn = Pooler.getPoolConn();
+        PreparedStatement ps = conn.prepareStatement(SQL_UPDATE_COMPETENCY)){
+            ps.setString(1,login);
+            int rs = ps.executeUpdate();
+            if(rs != 0){
+                log.trace("Competency updated!");
+                return true;
+            } else {
+                log.trace("Competency update failed!");
+            }
+        } catch (SQLException e) {
+            log.error(e);
+        } catch (NamingException e) {
+            log.error(e);
+        }
+        return false;
+    }
 
     public int getLevel(String login){
         try(Connection conn = Pooler.getPoolConn();
@@ -46,9 +105,9 @@ public class UserDao implements UserDaoInf{
             }
             return LoginController.userlevel;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error(e);
         } catch (NamingException e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return 0;
     }
@@ -70,7 +129,8 @@ public class UserDao implements UserDaoInf{
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getInt("level"),
-                        rs.getString("role")
+                        rs.getString("role"),
+                        rs.getInt("comp")
                 );
                 LoginController.userlevel = rs.getInt("level");
                 if(rs.getString("role").equals("admin")){

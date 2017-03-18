@@ -26,6 +26,7 @@ import java.util.Map;
 public class ChapterController {
     private ChapterServiceInf chapterService;
     private UserServiceInf userService;
+    public static String name;
 
     @Autowired
     public ChapterController(ChapterServiceInf chapterService,  UserServiceInf userService) {
@@ -39,7 +40,7 @@ public class ChapterController {
     @RequestMapping(value = "/chapters", method = RequestMethod.GET)
     public String getChaptersPage(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
+        name = auth.getName();
         if(userService.getlevel(name)) {
             List<Chapter> chapterList = null;
             try {

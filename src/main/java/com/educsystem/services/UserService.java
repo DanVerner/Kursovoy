@@ -35,4 +35,12 @@ public class UserService implements UserServiceInf{
         if(userDao.getLevel(login) != 0) return true;
         return false;
     }
+
+    public boolean updateCompetency(String login){
+        return userDao.updateCompetency(login);
+    }
+
+    public boolean updateLevel(String login){
+        return userDao.updateLevel(login);
+    }
 }

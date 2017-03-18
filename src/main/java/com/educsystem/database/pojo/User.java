@@ -10,14 +10,16 @@ public class User {
     private String password;
     private int level;
     private String role;
+    private int comp;
 
-    public User(int id, String username, String email, String password, int level, String role) {
+    public User(int id, String username, String email, String password, int level, String role, int comp) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.level = level;
         this.role = role;
+        this.comp = comp;
     }
 
     public int getId() {
@@ -66,5 +68,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getComp() {
+        return comp;
+    }
+
+    public void setComp(int comp) {
+        this.comp = comp;
     }
 }
