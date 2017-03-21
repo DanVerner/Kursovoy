@@ -45,32 +45,32 @@ public class LoginServ extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        String login = req.getParameter("login");
-        String oldPassword = req.getParameter("password");
-        String password = Crypt.crypting(oldPassword);
-        try {
-            if(userService.authorize(login, password)){
-                log.trace("Login successfull!");
-                session = req.getSession();
-                sessionID = session.getId();
-                resp.sendRedirect("/kursovoy/chapters");
-            } else {
-                log.trace("Login failed!");
-                req.getRequestDispatcher("/login.jsp").forward(req, resp);
-            }
-        } catch (UserDaoException e){
-            log.trace(e);
-        } catch (ClassNotFoundException e) {
-            log.trace(e);
-        } catch (NamingException e){
-            log.trace(e);
-        } catch (SQLException e){
-            log.trace(e);
-        }
-    }
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+//            throws ServletException, IOException {
+//        String login = req.getParameter("login");
+//        String oldPassword = req.getParameter("password");
+//        String password = Crypt.crypting(oldPassword);
+//        try {
+//            if(userService.authorize(login, password)){
+//                log.trace("Login successfull!");
+//                session = req.getSession();
+//                sessionID = session.getId();
+//                resp.sendRedirect("/kursovoy/chapters");
+//            } else {
+//                log.trace("Login failed!");
+//                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+//            }
+//        } catch (UserDaoException e){
+//            log.trace(e);
+//        } catch (ClassNotFoundException e) {
+//            log.trace(e);
+//        } catch (NamingException e){
+//            log.trace(e);
+//        } catch (SQLException e){
+//            log.trace(e);
+//        }
+//    }
 
     @Override
     public void init(ServletConfig config) throws ServletException {

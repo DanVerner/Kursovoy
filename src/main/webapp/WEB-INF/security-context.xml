@@ -31,12 +31,13 @@
     <authentication-manager>
         <authentication-provider>
             <password-encoder hash="md5"/>
+
             <jdbc-user-service data-source-ref="dataSource"
                                users-by-username-query="SELECT username,password, TRUE FROM users WHERE users.username=?;"
                                authorities-by-username-query="SELECT username,role FROM users WHERE users.username=?"/>
         </authentication-provider>
     </authentication-manager>
-
+        <beans:bean id="UserService" class="com.educsystem.database.dao.UserDao" />
         <beans:bean id="dataSource"
                     class="org.springframework.jdbc.datasource.DriverManagerDataSource">
             <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />

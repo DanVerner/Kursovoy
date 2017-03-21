@@ -1,6 +1,7 @@
 package com.educsystem.controllers;
 
 import com.educsystem.common.exceptions.LessonsDaoException;
+import com.educsystem.database.dao.LessonsDao;
 import com.educsystem.database.pojo.Chapter;
 import com.educsystem.database.pojo.Lessons;
 import com.educsystem.interfaces.LessonsServiceInf;

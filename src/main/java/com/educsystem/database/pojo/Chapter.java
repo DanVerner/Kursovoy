@@ -1,13 +1,26 @@
 package com.educsystem.database.pojo;
 
+import javax.persistence.*;
+
 /**
  * Created by Denis on 26.02.2017.
  */
+@Entity
+@Table(name = "chapter")
 public class Chapter {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
+    @Column(name = "user_level")
     private int user_level;
+
+    public Chapter(){
+
+    }
 
     public Chapter(int id, String title, String description, int user_level) {
         this.id = id;

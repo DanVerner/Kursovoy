@@ -23,7 +23,7 @@ public class UserService implements UserServiceInf{
     }
 
     public boolean authorize(String login, String password) throws UserDaoException, ClassNotFoundException, SQLException, NamingException {
-        if(userDao.getUser(login, password) != null) return true;
+        if(userDao.getUser(login,password) != null) return true;
         return false;
     }
 
